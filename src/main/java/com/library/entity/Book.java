@@ -1,13 +1,13 @@
 package com.library.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 @Entity
+@Table(name = "books")
 public class Book {
 
     @Id
@@ -17,4 +17,9 @@ public class Book {
     private String title;
 
     private String author;
+
+    @Column(name = "copies_available")
+    private int copiesAvailable;
+
+    private LocalDate age_since_publication;
 }
