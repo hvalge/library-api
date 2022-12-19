@@ -1,7 +1,8 @@
-package db.entity;
+package com.library.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -13,7 +14,9 @@ public class LoanerBook {
     @Id
     private Long id;
 
-    private String title;
+    @OneToOne
+    private Loaner loaner;
 
-    private String author;
+    @OneToOne
+    private Book book;
 }
