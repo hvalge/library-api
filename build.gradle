@@ -18,6 +18,8 @@ repositories {
 	mavenCentral()
 }
 
+def jsonWebTokenVersion = '0.11.5'
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -25,7 +27,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'io.jsonwebtoken',
 			name: 'jjwt-api',
-			version: '0.11.5'
+			version: jsonWebTokenVersion
+	implementation group: 'io.jsonwebtoken',
+			name: 'jjwt-impl',
+			version: jsonWebTokenVersion
+	implementation group: 'io.jsonwebtoken',
+			name: 'jjwt-jackson',
+			version: jsonWebTokenVersion
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.hsqldb:hsqldb'

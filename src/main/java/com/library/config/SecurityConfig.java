@@ -1,6 +1,7 @@
 package com.library.config;
 
 
+import com.library.AppUser;
 import com.library.config.handler.ApiAccessDeniedHandler;
 import com.library.config.handler.ApiEntryPoint;
 import com.library.config.handler.ApiLogoutSuccessHandler;
@@ -8,6 +9,7 @@ import com.library.config.jwt.JwtAuthenticationFilter;
 import com.library.config.jwt.JwtAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,6 +18,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,7 +30,10 @@ import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
+@Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 @PropertySource("classpath:/application.properties")
@@ -87,6 +95,15 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailService() {
+        var manager = new JdbcUserDetailsManager(dataSource);
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("STAFF"));
+        PasswordEncoder passwordEncoder = passwordEncoder();
+        String encodedPassword = passwordEncoder.encode("staff");
+
+        manager.createUser(new User("staff", encodedPassword, authorities));
+
         return new JdbcUserDetailsManager(dataSource);
     }
 

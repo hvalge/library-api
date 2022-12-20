@@ -34,10 +34,8 @@ CREATE TABLE loans (
 
 CREATE TABLE users (
     username VARCHAR(50) NOT NULL PRIMARY KEY,
-    password VARCHAR(50) NOT NULL,
-    enabled BOOLEAN NOT NULL,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    enabled BOOLEAN NOT NULL
 );
 
 CREATE TABLE authorities (
