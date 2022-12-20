@@ -22,5 +22,3 @@ INSERT INTO loans (id, book_id, loaner_id, loaned_at, due_date, is_returned, ret
     VALUES (3, 3, 1, '2022-11-01', '2022-11-08', false, null);
 INSERT INTO loans (id, book_id, loaner_id, loaned_at, due_date, is_returned, returned_at)
     VALUES (4, 4, 1, '2021-06-01', '2022-06-29', true, '2022-07-01');
-
-

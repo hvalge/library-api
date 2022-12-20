@@ -21,5 +21,6 @@ public class Book {
     @Column(name = "copies_available")
     private int copiesAvailable;
 
-    private LocalDate age_since_publication;
+    @Column(name = "age_since_publication", columnDefinition = "timestamp")
+    private LocalDate ageSincePublication;
 }

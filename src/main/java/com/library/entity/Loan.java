@@ -20,15 +20,15 @@ public class Loan {
     @OneToOne
     private Book book;
 
-    @Column(name = "loaned_at")
+    @Column(name = "loaned_at", columnDefinition = "timestamp")
     private LocalDate loanedAt;
 
-    @Column(name = "due_date")
+    @Column(name = "due_date", columnDefinition = "timestamp")
     private LocalDate dueDate;
 
     @Column(name = "is_returned")
     private boolean isReturned;
 
-    @Column(name = "returned_at")
+    @Column(name = "returned_at", columnDefinition = "timestamp")
     private LocalDate returnedAt;
 }
