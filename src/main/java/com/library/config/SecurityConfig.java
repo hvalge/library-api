@@ -1,10 +1,8 @@
 package com.library.config;
 
 
-import com.library.AppUser;
 import com.library.config.handler.ApiAccessDeniedHandler;
 import com.library.config.handler.ApiEntryPoint;
-import com.library.config.handler.ApiLogoutSuccessHandler;
 import com.library.config.jwt.JwtAuthenticationFilter;
 import com.library.config.jwt.JwtAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,15 +52,11 @@ public class SecurityConfig {
 
         http.csrf().disable();
 
-        http.logout().logoutUrl("/api/logout");
-
         http.exceptionHandling()
                 .authenticationEntryPoint(new ApiEntryPoint());
 
         http.exceptionHandling()
                 .accessDeniedHandler(new ApiAccessDeniedHandler());
-
-        http.logout().logoutSuccessHandler(new ApiLogoutSuccessHandler());
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -101,7 +95,6 @@ public class SecurityConfig {
         authorities.add(new SimpleGrantedAuthority("STAFF"));
         PasswordEncoder passwordEncoder = passwordEncoder();
         String encodedPassword = passwordEncoder.encode("staff");
-
         manager.createUser(new User("staff", encodedPassword, authorities));
 
         return new JdbcUserDetailsManager(dataSource);
