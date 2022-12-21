@@ -19,7 +19,8 @@ public class JwtHelper {
     }
 
     public String encode(TokenInfo tokenInfo) {
-        return encode(tokenInfo, LocalDateTime.now().plusMinutes(15));
+        // Set to expire in 5 hours just for convenient testing.
+        return encode(tokenInfo, LocalDateTime.now().plusMinutes(300));
     }
 
     public String encode(TokenInfo tokenInfo, LocalDateTime expiration) {

@@ -24,6 +24,9 @@ public class Book {
     @Length(min = 1, max = 255)
     private String author;
 
+    @Length(min = 1, max = 255)
+    private String location;
+
     @Column(name = "copies_available")
     private int copiesAvailable;
 

@@ -17,6 +17,6 @@ public class ApiEntryPoint implements AuthenticationEntryPoint {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json");
         PrintWriter writer = response.getWriter();
-        writer.println("{\"message\": \"JWT is either invalid or has expired.\"}");
+        writer.println("{\"message\": \"JWT is either missing, invalid or has expired.\"}");
     }
 }

@@ -1,13 +1,13 @@
-INSERT INTO books (title, author, copies_available, age_since_publication)
-    VALUES ('The Hobbit', 'J.R.R. Tolkien', 5, '2022-01-01');
-INSERT INTO books (title, author, copies_available, age_since_publication)
-    VALUES ('The Lord of the Rings', 'J.R.R. Tolkien', 4, '2022-12-15');
-INSERT INTO books (title, author, copies_available, age_since_publication)
-    VALUES ('The Silmarillion', 'J.R.R. Tolkien', 5, '2022-09-01');
-INSERT INTO books (title, author, copies_available, age_since_publication)
-    VALUES ('A Game of Thrones', 'George R.R. Martin', 10, '2022-01-01');
-INSERT INTO books (title, author, copies_available, age_since_publication)
-    VALUES ('Dune', 'Frank Herbert', 4, '2022-01-01');
+INSERT INTO books (title, author, location, copies_available, age_since_publication)
+    VALUES ('The Hobbit', 'J.R.R. Tolkien', 'Location 1' , 5, '2022-01-01');
+INSERT INTO books (title, author, location, copies_available, age_since_publication)
+    VALUES ('The Lord of the Rings', 'Location 2', 'J.R.R. Tolkien', 4, '2022-12-15');
+INSERT INTO books (title, author, location, copies_available, age_since_publication)
+    VALUES ('The Silmarillion', 'Location 2', 'J.R.R. Tolkien', 5, '2022-09-01');
+INSERT INTO books (title, author, location, copies_available, age_since_publication)
+    VALUES ('A Game of Thrones', 'Location 3', 'George R.R. Martin', 10, '2022-01-01');
+INSERT INTO books (title, author, location, copies_available, age_since_publication)
+    VALUES ('Dune', 'Frank Herbert', 'Location 3', 4, '2022-01-01');
 
 INSERT INTO loaners (first_name, last_name) VALUES ('John', 'Doe');
 INSERT INTO loaners (first_name, last_name) VALUES ('Jane', 'Doe');

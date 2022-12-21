@@ -37,9 +37,9 @@ import java.util.List;
 @PropertySource("classpath:/application.properties")
 public class SecurityConfig {
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    private String jwtKey;
+    private final String jwtKey;
 
     public SecurityConfig(DataSource dataSource, @Value("${jwt.signing.key}") String jwtKey) {
         this.dataSource = dataSource;
@@ -63,6 +63,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests()
                 .requestMatchers("/api/login").permitAll()
+                .requestMatchers("/api/status").permitAll()
+                .requestMatchers("/error").permitAll()
                 .requestMatchers("/api/**").authenticated();
 
         http.apply(new FilterConfigurer());
