@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class StatusBookBusinessDTO {
+public class StatusBookDTO {
         private String title;
         private int copiesAvailable;
         private LocalDate dueDate;

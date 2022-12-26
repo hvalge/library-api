@@ -1,12 +1,10 @@
 package com.library.db.repository;
 
-import com.library.dto.out.StatusBookBusinessDTO;
 import com.library.dto.out.StatusBookDataDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

@@ -15,10 +15,10 @@ INSERT INTO loaners (first_name, last_name) VALUES ('John', 'Smith');
 INSERT INTO loaners (first_name, last_name) VALUES ('Jane', 'Smith');
 
 INSERT INTO loans (book_id, loaner_id, loaned_at, due_date, is_returned, returned_at)
-    VALUES (1, 1, '2022-02-01', '2022-02-09', true, '2022-02-08');
+    VALUES (1, 1, '2022-02-01', '2022-02-08', true, '2022-02-08');
 INSERT INTO loans (book_id, loaner_id, loaned_at, due_date, is_returned, returned_at)
     VALUES (2, 1, '2022-12-17', '2022-12-24', false, null);
 INSERT INTO loans (book_id, loaner_id, loaned_at, due_date, is_returned, returned_at)
     VALUES (3, 1, '2022-11-01', '2022-11-08', false, null);
 INSERT INTO loans (book_id, loaner_id, loaned_at, due_date, is_returned, returned_at)
-    VALUES (4, 1, '2021-06-01', '2022-06-29', true, '2022-07-01');
+    VALUES (4, 4, '2021-06-01', '2022-06-29', true, '2022-07-01');
