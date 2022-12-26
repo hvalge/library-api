@@ -13,6 +13,8 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class LoanService {
 
@@ -46,6 +48,18 @@ public class LoanService {
         Loan loan = loanMapper.mapBookAndLoanerToLoan(loaner, book);
 
         return loanRepository.save(loan);
+    }
+
+    @Transactional
+    public void returnBook(Long loanId) {
+        Loan loan = loanRepository.findById(loanId)
+                .orElseThrow(() -> new EntityNotFoundException("Loan with ID " + loanId + " not found"));
+
+        if (!loan.getIsReturned()) {
+            loan.setIsReturned(true);
+            loan.getBook().setCopiesAvailable(loan.getBook().getCopiesAvailable() + 1);
+            loan.setReturnedAt(LocalDate.now());
+        }
     }
 
 }

@@ -23,7 +23,8 @@ public class LoanController {
     }
 
     @PatchMapping("/{id}/return")
-    public void returnBook() {
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void returnBook(@PathVariable long id) {
+        loanService.returnBook(id);
     }
 }

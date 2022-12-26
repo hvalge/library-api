@@ -22,7 +22,7 @@ public class LoanMapper {
         loan.setLoaner(loaner);
         loan.setBook(book);
         loan.setLoanedAt(LocalDate.now());
-        loan.setReturned(false);
+        loan.setIsReturned(false);
         loan.setDueDate(loanDurationCalculatorService.calculateLoanDueDate(
                 LocalDate.now(), book.getAgeSincePublication(), book.getCopiesAvailable()));
         return loan;

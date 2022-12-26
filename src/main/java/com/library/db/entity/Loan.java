@@ -31,7 +31,7 @@ public class Loan {
     private LocalDate dueDate;
 
     @Column(name = "is_returned")
-    private boolean isReturned;
+    private Boolean isReturned;
 
     @Column(name = "returned_at", columnDefinition = "timestamp")
     private LocalDate returnedAt;
