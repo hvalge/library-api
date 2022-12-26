@@ -3,7 +3,6 @@ package com.library.controller;
 import com.library.db.entity.Loaner;
 import com.library.dto.in.LoanerDTO;
 import com.library.service.LoanerService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
