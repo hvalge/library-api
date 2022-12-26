@@ -7,11 +7,11 @@ import com.library.db.repository.BookRepository;
 import com.library.db.repository.LoanRepository;
 import com.library.db.repository.LoanerRepository;
 import com.library.dto.in.LoanDTO;
+import com.library.exception.NoCopiesAvailableException;
+import com.library.mapper.LoanMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class LoanService {
@@ -19,33 +19,31 @@ public class LoanService {
     private final LoanRepository loanRepository;
     private final LoanerRepository loanerRepository;
     private final BookRepository bookRepository;
-    private final LoanDurationCalculatorService loanDurationCalculatorService;
+    private final LoanMapper loanMapper;
 
-    public LoanService(LoanRepository loanRepository, LoanerRepository loanerRepository, BookRepository bookRepository,
-                       LoanDurationCalculatorService loanDurationCalculatorService) {
+    public LoanService(LoanRepository loanRepository, LoanerRepository loanerRepository,
+                       BookRepository bookRepository, LoanMapper loanMapper) {
         this.loanRepository = loanRepository;
         this.loanerRepository = loanerRepository;
         this.bookRepository = bookRepository;
-        this.loanDurationCalculatorService = loanDurationCalculatorService;
+        this.loanMapper = loanMapper;
     }
 
     @Transactional
     public Loan createLoan(LoanDTO loanDTO) {
-        Loaner loaner = loanerRepository.findById(loanDTO.getLoanerId())
-                .orElseThrow(() -> new EntityNotFoundException("Loaner with ID " + loanDTO.getLoanerId() + " not found"));
-
         Book book = bookRepository.findById(loanDTO.getBookId())
                 .orElseThrow(() -> new EntityNotFoundException("Loaner with ID " + loanDTO.getLoanerId() + " not found"));
 
-        Loan loan = new Loan();
+        if (book.getCopiesAvailable() == 0) {
+            throw new NoCopiesAvailableException("No copies available of book " + book.getTitle() + " to loan out.");
+        }
+        book.setCopiesAvailable(book.getCopiesAvailable() - 1);
+
+        Loaner loaner = loanerRepository.findById(loanDTO.getLoanerId())
+                .orElseThrow(() -> new EntityNotFoundException("Loaner with ID " + loanDTO.getLoanerId() + " not found"));
 
 
-        loan.setLoaner(loaner);
-        loan.setBook(book);
-        loan.setLoanedAt(LocalDate.now());
-        loan.setReturned(false);
-        loan.setDueDate(loanDurationCalculatorService.calculateLoanDueDate(
-                LocalDate.now(), book.getAgeSincePublication(), book.getCopiesAvailable()));
+        Loan loan = loanMapper.mapBookAndLoanerToLoan(loaner, book);
 
         return loanRepository.save(loan);
     }
