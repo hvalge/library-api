@@ -6,6 +6,8 @@ import com.library.dto.in.LoanerDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LoanerService {
 
@@ -22,5 +24,9 @@ public class LoanerService {
         loaner.setLastName(loanerDTO.getLastName());
 
         return loanerRepository.save(loaner);
+    }
+
+    public List<Loaner> searchLoaners(String name) {
+        return loanerRepository.findPartialMatchForLoaners(name);
     }
 }

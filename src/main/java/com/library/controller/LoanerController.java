@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/loaners")
 public class LoanerController {
@@ -21,5 +23,10 @@ public class LoanerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Loaner createLoaner(@RequestBody @NotNull LoanerDTO loanerDTO) {
         return loanerService.createLoaner(loanerDTO);
+    }
+
+    @GetMapping("/search")
+    public List<Loaner> searchLoaners(@RequestParam String name) {
+        return loanerService.searchLoaners(name);
     }
 }
