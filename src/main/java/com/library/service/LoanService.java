@@ -7,6 +7,7 @@ import com.library.db.repository.BookRepository;
 import com.library.db.repository.LoanRepository;
 import com.library.db.repository.LoanerRepository;
 import com.library.dto.in.LoanDTO;
+import com.library.dto.in.UpdateBookLoanDueDateDTO;
 import com.library.exception.NoCopiesAvailableException;
 import com.library.mapper.LoanMapper;
 import jakarta.persistence.EntityNotFoundException;
@@ -60,6 +61,21 @@ public class LoanService {
             loan.getBook().setCopiesAvailable(loan.getBook().getCopiesAvailable() + 1);
             loan.setReturnedAt(LocalDate.now());
         }
+    }
+
+    @Transactional
+    public void updateBookLoanDueDate(Long loanId, UpdateBookLoanDueDateDTO updateBookLoanDueDateDTO) {
+        Loan loan = loanRepository.findById(loanId)
+                .orElseThrow(() -> new EntityNotFoundException("Loan with ID " + loanId + " not found"));
+
+        if (loan.getIsReturned()) {
+            throw new IllegalArgumentException("Book with ID " + loan.getBook().getId() + " has already been returned.");
+        }
+        if (updateBookLoanDueDateDTO.getNewDueDate().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Due date cannot be before today's date.");
+        }
+
+        loan.setDueDate(updateBookLoanDueDateDTO.getNewDueDate());
     }
 
 }
