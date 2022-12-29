@@ -16,6 +16,12 @@ public class BookService {
     }
 
     public List<Book> searchBooks(String title, String author) {
-        return bookRepository.findPartialMatchForBooks(title, author);
+        if (title != null && author != null) {
+            return bookRepository.findPartialMatchForBooksByTitleAndAuthor(title, author);
+        } else if (title != null) {
+            return bookRepository.findPartialMatchForBooksByTitle(title);
+        } else {
+            return bookRepository.findPartialMatchForBooksByAuthor(author);
+        }
     }
 }

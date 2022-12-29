@@ -12,7 +12,7 @@ public class ReportMapper {
 
     public OverdueBookDTO mapOverdueBookDataToOverdueBook(OverdueBookDataDTO overdueBookData) {
         OverdueBookDTO overdueBook = new OverdueBookDTO();
-        overdueBook.setLoanerFullName(overdueBookData.getLoanerFullName());
+        overdueBook.setLoanerFullName(overdueBookData.getLoanerName());
         overdueBook.setBookTitle(overdueBookData.getBookTitle());
 
         LocalDate startDate = overdueBookData.getDueDate();

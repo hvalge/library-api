@@ -8,7 +8,6 @@ import com.library.db.repository.LoanRepository;
 import com.library.db.repository.LoanerRepository;
 import com.library.dto.in.LoanDTO;
 import com.library.dto.in.UpdateBookLoanDueDateDTO;
-import com.library.exception.NoCopiesAvailableException;
 import com.library.mapper.LoanMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -38,7 +37,7 @@ public class LoanService {
                 .orElseThrow(() -> new EntityNotFoundException("Loaner with ID " + loanDTO.getLoanerId() + " not found"));
 
         if (book.getCopiesAvailable() == 0) {
-            throw new NoCopiesAvailableException("No copies available of book " + book.getTitle() + " to loan out.");
+            throw new IllegalArgumentException("No copies available of book " + book.getTitle() + " to loan out.");
         }
         book.setCopiesAvailable(book.getCopiesAvailable() - 1);
 

@@ -10,7 +10,9 @@ import java.util.List;
 @Repository
 public interface LoanerRepository extends JpaRepository<Loaner, Long> {
 
-    @Query("SELECT l FROM Loaner l WHERE l.firstName LIKE %:name% OR l.lastName LIKE %:name%")
+    @Query("SELECT l FROM Loaner l " +
+            "WHERE LOWER(l.firstName) LIKE LOWER(CONCAT('%', :name, '%')) " +
+            "OR LOWER(l.lastName) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<Loaner> findPartialMatchForLoaners(String name);
 
 }

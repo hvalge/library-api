@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class OverdueBookDataDTO {
 
-    private String loanerFullName;
+    private String loanerName;
     private String bookTitle;
     private LocalDate dueDate;
     private Boolean isReturned;

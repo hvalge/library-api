@@ -11,7 +11,7 @@ public class LoanDurationCalculatorService {
         return dayLoaned.plusDays(calculateLoanDurationInDays(dayLoaned, publishingDate, copiesAvailable));
     }
 
-    public int calculateLoanDurationInDays(LocalDate dayLoaned, LocalDate publishingDate, int copiesAvailable) {
+    private int calculateLoanDurationInDays(LocalDate dayLoaned, LocalDate publishingDate, int copiesAvailable) {
         if (publishingDate.isAfter(dayLoaned.minusMonths(3)) || copiesAvailable < 5) {
             return 7;
         } else {

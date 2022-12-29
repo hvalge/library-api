@@ -1,27 +1,21 @@
 package com.library.db.repository;
 
+import com.library.db.entity.Loan;
 import com.library.dto.out.OverdueBookDataDTO;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class ReportOverdueBooksRepository {
+public interface ReportOverdueBooksRepository extends JpaRepository<Loan, Long> {
 
-    @PersistenceContext
-    private EntityManager em;
-
-    public List<OverdueBookDataDTO> getOverdueBooks() {
-        return em.createQuery(
-                "SELECT new com.library.dto.out.OverdueBookDataDTO(" +
-                        "CONCAT(loaner.firstName, ' ', loaner.lastName), book.title, l.dueDate, l.isReturned, l.returnedAt) " +
-                        "FROM Loan l " +
-                        "JOIN l.book book " +
-                        "JOIN l.loaner loaner ", OverdueBookDataDTO.class)
-                .getResultList();
-    }
-
+    @Query("SELECT new com.library.dto.out.OverdueBookDataDTO(" +
+            "CONCAT(loaner.firstName, ' ', loaner.lastName), book.title, l.dueDate, l.isReturned, l.returnedAt) " +
+            "FROM Loan l " +
+            "JOIN l.book book " +
+            "JOIN l.loaner loaner")
+    List<OverdueBookDataDTO> getOverdueBooks();
 
 }

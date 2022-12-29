@@ -23,49 +23,6 @@ public class LoanDurationCalculatorServiceTests {
         dayLoaned = LocalDate.now();
     }
 
-
-    @Test
-    void testCalculateLoanDurationInDaysShouldReturnFourWeeksWhenBookIsNotNew() {
-        LocalDate publishingDate = dayLoaned.minusMonths(3);
-        int copiesAvailable = 5;
-
-        int loanDurationInDays = loanDurationCalculatorService.calculateLoanDurationInDays(dayLoaned, publishingDate, copiesAvailable);
-
-        assertEquals("Loan duration should be 28 days", 28, loanDurationInDays);
-    }
-
-    @Test
-    void testCalculateLoanDurationInDaysShouldReturnAWeekWhenBookIsNew() {
-        LocalDate publishingDate = dayLoaned.minusMonths(3).plusDays(1);
-        int copiesAvailable = 5;
-
-        int loanDurationInDays = loanDurationCalculatorService.calculateLoanDurationInDays(dayLoaned, publishingDate, copiesAvailable);
-
-        assertEquals("Loan duration should be 7 days", 7, loanDurationInDays);
-    }
-
-    @Test
-    void testCalculateLoanDurationInDaysShouldReturnAWeekWhenLessThanFiveCopiesAvailableAndBookIsNotNew() {
-        LocalDate publishingDate = dayLoaned.minusMonths(3);
-        int copiesAvailable = 4;
-
-        int loanDurationInDays = loanDurationCalculatorService.calculateLoanDurationInDays(dayLoaned, publishingDate, copiesAvailable);
-
-        assertEquals("Loan duration should be 7 days", 7, loanDurationInDays);
-    }
-
-    @Test
-    void testCalculateLoanDurationInDaysShouldReturnFourWeeksWhenFiveCopiesAvailable() {
-        LocalDate publishingDate = dayLoaned.minusMonths(3);
-        int copiesAvailable = 5;
-
-        int loanDurationInDays = loanDurationCalculatorService.calculateLoanDurationInDays(dayLoaned, publishingDate, copiesAvailable);
-
-        assertEquals("Loan duration should be 28 days", 28, loanDurationInDays);
-    }
-
-
-
     @Test
     void testCalculateLoanDueDateShouldBePlusFourWeeksWhenFiveCopiesAvailableAndBookIsNotNew() {
         var publishingDate = dayLoaned.minusMonths(3);
