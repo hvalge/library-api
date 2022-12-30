@@ -1,7 +1,7 @@
 // Author: Märt Kalmo
 // https://bitbucket.org/mkalmo/icd0011tests
 
-package com.library.controller.validation;
+package com.library.controller.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

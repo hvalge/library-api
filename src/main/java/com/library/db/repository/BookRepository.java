@@ -1,7 +1,7 @@
 package com.library.db.repository;
 
 import com.library.db.entity.Book;
-import com.library.dto.out.StatusBookDataDTO;
+import com.library.dto.out.StatusBookDataDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    @Query("SELECT new com.library.dto.out.StatusBookDataDTO(" +
+    @Query("SELECT new com.library.dto.out.StatusBookDataDto(" +
             "b.title, b.copiesAvailable, b.location, b.ageSincePublication) FROM Book b")
-    List<StatusBookDataDTO> getLibraryStatus();
+    List<StatusBookDataDto> getLibraryStatus();
 
     @Query("SELECT b FROM Book b " +
             "WHERE LOWER(b.title) LIKE LOWER(CONCAT('%', :title, '%')) " +

@@ -1,7 +1,7 @@
 package com.library.mapper;
 
-import com.library.dto.out.OverdueBookDTO;
-import com.library.dto.out.OverdueBookDataDTO;
+import com.library.dto.out.OverdueBookDto;
+import com.library.dto.out.OverdueBookDataDto;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -10,8 +10,8 @@ import java.time.Period;
 @Component
 public class ReportMapper {
 
-    public OverdueBookDTO mapOverdueBookDataToOverdueBook(OverdueBookDataDTO overdueBookData) {
-        OverdueBookDTO overdueBook = new OverdueBookDTO();
+    public OverdueBookDto mapOverdueBookDataToOverdueBook(OverdueBookDataDto overdueBookData) {
+        OverdueBookDto overdueBook = new OverdueBookDto();
         overdueBook.setLoanerFullName(overdueBookData.getLoanerName());
         overdueBook.setBookTitle(overdueBookData.getBookTitle());
 

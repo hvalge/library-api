@@ -1,6 +1,6 @@
 package com.library.controller;
 
-import com.library.dto.out.StatusBookDTO;
+import com.library.dto.out.StatusBookDto;
 import com.library.service.StatusService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class StatusController {
     }
 
     @GetMapping
-    public List<StatusBookDTO> getStatus() {
+    public List<StatusBookDto> getStatus() {
         return statusService.getStatus();
     }
 }

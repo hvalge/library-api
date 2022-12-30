@@ -7,7 +7,7 @@ INSERT INTO books (title, author, location, copies_available, age_since_publicat
 INSERT INTO books (title, author, location, copies_available, age_since_publication)
     VALUES ('A Game of Thrones', 'George R.R. Martin', 'Location 3', 10, '2022-01-01');
 INSERT INTO books (title, author, location, copies_available, age_since_publication)
-    VALUES ('Dune', 'Frank Herbert', 'Location 3', 4, '2022-01-01');
+    VALUES ('Dune', 'Frank Herbert', 'Location 3', 0, '2022-01-01');
 
 INSERT INTO loaners (first_name, last_name) VALUES ('John', 'Doe');
 INSERT INTO loaners (first_name, last_name) VALUES ('Jane', 'Doe');

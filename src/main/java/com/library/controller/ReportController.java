@@ -1,6 +1,6 @@
 package com.library.controller;
 
-import com.library.dto.out.OverdueBookDTO;
+import com.library.dto.out.OverdueBookDto;
 import com.library.service.ReportService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class ReportController {
     }
 
     @GetMapping("/overdue-books")
-    public List<OverdueBookDTO> getReport() {
+    public List<OverdueBookDto> getReport() {
         return reportService.getReport();
     }
 

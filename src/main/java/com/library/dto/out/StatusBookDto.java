@@ -9,12 +9,9 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StatusBookDataDTO {
-
+public class StatusBookDto {
     private String title;
     private int copiesAvailable;
+    private LocalDate dueDate;
     private String location;
-
-    private LocalDate ageSincePublication;
-
 }

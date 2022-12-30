@@ -6,8 +6,8 @@ import com.library.db.entity.Loaner;
 import com.library.db.repository.BookRepository;
 import com.library.db.repository.LoanRepository;
 import com.library.db.repository.LoanerRepository;
-import com.library.dto.in.LoanDTO;
-import com.library.dto.in.UpdateBookLoanDueDateDTO;
+import com.library.dto.in.LoanDto;
+import com.library.dto.in.UpdateBookLoanDueDateDto;
 import com.library.mapper.LoanMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -32,7 +32,7 @@ public class LoanService {
     }
 
     @Transactional
-    public Loan createLoan(LoanDTO loanDTO) {
+    public Loan createLoan(LoanDto loanDTO) {
         Book book = bookRepository.findById(loanDTO.getBookId())
                 .orElseThrow(() -> new EntityNotFoundException("Loaner with ID " + loanDTO.getLoanerId() + " not found"));
 
@@ -63,7 +63,7 @@ public class LoanService {
     }
 
     @Transactional
-    public void updateBookLoanDueDate(Long loanId, UpdateBookLoanDueDateDTO updateBookLoanDueDateDTO) {
+    public void updateBookLoanDueDate(Long loanId, UpdateBookLoanDueDateDto updateBookLoanDueDateDTO) {
         Loan loan = loanRepository.findById(loanId)
                 .orElseThrow(() -> new EntityNotFoundException("Loan with ID " + loanId + " not found"));
 

@@ -1,8 +1,8 @@
 package com.library.service;
 
-import com.library.db.repository.ReportOverdueBooksRepository;
-import com.library.dto.out.OverdueBookDTO;
-import com.library.dto.out.OverdueBookDataDTO;
+import com.library.db.repository.ReportRepository;
+import com.library.dto.out.OverdueBookDto;
+import com.library.dto.out.OverdueBookDataDto;
 import com.library.mapper.ReportMapper;
 import org.springframework.stereotype.Service;
 
@@ -13,17 +13,17 @@ import java.util.List;
 @Service
 public class ReportService {
 
-    private final ReportOverdueBooksRepository reportOverdueBooksRepository;
+    private final ReportRepository reportRepository;
     private final ReportMapper reportMapper;
 
-    public ReportService(ReportOverdueBooksRepository reportOverdueBooksRepository, ReportMapper reportMapper) {
-        this.reportOverdueBooksRepository = reportOverdueBooksRepository;
+    public ReportService(ReportRepository reportRepository, ReportMapper reportMapper) {
+        this.reportRepository = reportRepository;
         this.reportMapper = reportMapper;
     }
 
-    public List<OverdueBookDTO> getReport() {
-        List<OverdueBookDataDTO> overdueBooksData = reportOverdueBooksRepository.getOverdueBooks();
-        List<OverdueBookDTO> report = new ArrayList<>();
+    public List<OverdueBookDto> getReport() {
+        List<OverdueBookDataDto> overdueBooksData = reportRepository.getOverdueBooks();
+        List<OverdueBookDto> report = new ArrayList<>();
 
         overdueBooksData.forEach(overdueBookData -> {
             if (isBookOverdueByAtLeastDay(overdueBookData)) {
@@ -34,7 +34,7 @@ public class ReportService {
         return report;
     }
 
-    private boolean isBookOverdueByAtLeastDay(OverdueBookDataDTO overdueBookData) {
+    private boolean isBookOverdueByAtLeastDay(OverdueBookDataDto overdueBookData) {
         long daysOverdue;
         if (overdueBookData.getIsReturned()) {
             daysOverdue = overdueBookData.getReturnedAt().toEpochDay() - overdueBookData.getDueDate().toEpochDay();

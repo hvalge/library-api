@@ -9,12 +9,11 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OverdueBookDataDTO {
+public class StatusBookDataDto {
 
-    private String loanerName;
-    private String bookTitle;
-    private LocalDate dueDate;
-    private Boolean isReturned;
-    private LocalDate returnedAt;
+    private String title;
+    private int copiesAvailable;
+    private String location;
+    private LocalDate ageSincePublication;
 
 }

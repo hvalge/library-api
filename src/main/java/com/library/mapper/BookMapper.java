@@ -1,7 +1,7 @@
 package com.library.mapper;
 
-import com.library.dto.out.StatusBookDTO;
-import com.library.dto.out.StatusBookDataDTO;
+import com.library.dto.out.StatusBookDto;
+import com.library.dto.out.StatusBookDataDto;
 import com.library.service.LoanDurationCalculatorService;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +16,8 @@ public class BookMapper {
         this.loanDurationCalculatorService = loanDurationCalculatorService;
     }
 
-    public StatusBookDTO statusBookDataToStatusBook(StatusBookDataDTO dataDto) {
-        var businessDto = new StatusBookDTO();
+    public StatusBookDto statusBookDataToStatusBook(StatusBookDataDto dataDto) {
+        var businessDto = new StatusBookDto();
         businessDto.setTitle(dataDto.getTitle());
         businessDto.setCopiesAvailable(dataDto.getCopiesAvailable());
         businessDto.setLocation(dataDto.getLocation());

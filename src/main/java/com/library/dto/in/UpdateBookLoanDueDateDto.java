@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class UpdateBookLoanDueDateDTO {
+public class UpdateBookLoanDueDateDto {
 
     @NotNull
     private LocalDate newDueDate;

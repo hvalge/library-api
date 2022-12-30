@@ -46,7 +46,7 @@ public class ApiAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
         UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken(
-                    loginCredentials.getUserName(),
+                    loginCredentials.getUsername(),
                         loginCredentials.getPassword());
 
         return getAuthenticationManager().authenticate(token);

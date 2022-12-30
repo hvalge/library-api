@@ -4,14 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OverdueBookDTO {
+public class OverdueBookDataDto {
 
-    private String loanerFullName;
+    private String loanerName;
     private String bookTitle;
-    private int overdueDurationInDays;
-    private boolean isReturned;
+    private LocalDate dueDate;
+    private Boolean isReturned;
+    private LocalDate returnedAt;
 
 }

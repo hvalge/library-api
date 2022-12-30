@@ -3,7 +3,7 @@ package com.library.dto.in;
 import lombok.Data;
 
 @Data
-public class LoanDTO {
+public class LoanDto {
 
     private Long bookId;
     private Long loanerId;

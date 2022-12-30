@@ -1,8 +1,9 @@
 package com.library.controller;
 
 import com.library.db.entity.Loaner;
-import com.library.dto.in.LoanerDTO;
+import com.library.dto.in.LoanerDto;
 import com.library.service.LoanerService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class LoanerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Loaner createLoaner(@RequestBody @NotNull LoanerDTO loanerDTO) {
+    public Loaner createLoaner(@RequestBody @NotNull @Valid LoanerDto loanerDTO) {
         return loanerService.createLoaner(loanerDTO);
     }
 

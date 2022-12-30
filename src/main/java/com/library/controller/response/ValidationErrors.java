@@ -1,7 +1,7 @@
 // Author: Märt Kalmo
 // https://bitbucket.org/mkalmo/icd0011tests
 
-package com.library.controller.validation;
+package com.library.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

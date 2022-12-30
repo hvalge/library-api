@@ -1,8 +1,8 @@
 package com.library.service;
 
 import com.library.db.repository.BookRepository;
-import com.library.dto.out.StatusBookDTO;
-import com.library.dto.out.StatusBookDataDTO;
+import com.library.dto.out.StatusBookDto;
+import com.library.dto.out.StatusBookDataDto;
 import com.library.mapper.BookMapper;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +22,12 @@ public class StatusService {
         this.bookMapper = bookMapper;
     }
 
-    public List<StatusBookDTO> getStatus() {
-        List<StatusBookDataDTO> books = bookRepository.getLibraryStatus();
+    public List<StatusBookDto> getStatus() {
+        List<StatusBookDataDto> books = bookRepository.getLibraryStatus();
 
-        List<StatusBookDTO> result = new ArrayList<>();
+        List<StatusBookDto> result = new ArrayList<>();
 
-        for (StatusBookDataDTO book : books) {
+        for (StatusBookDataDto book : books) {
             result.add(bookMapper.statusBookDataToStatusBook(book));
         }
 

@@ -1,9 +1,10 @@
 package com.library.controller;
 
 import com.library.db.entity.Loan;
-import com.library.dto.in.LoanDTO;
-import com.library.dto.in.UpdateBookLoanDueDateDTO;
+import com.library.dto.in.LoanDto;
+import com.library.dto.in.UpdateBookLoanDueDateDto;
 import com.library.service.LoanService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class LoanController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Loan createLoan(@RequestBody LoanDTO loanDTO) {
+    public Loan createLoan(@RequestBody @Valid LoanDto loanDTO) {
         return loanService.createLoan(loanDTO);
     }
 
@@ -31,7 +32,7 @@ public class LoanController {
 
     @PatchMapping("/{id}/update-book-loan-due-date")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBookLoanDueDate(@PathVariable long id, @RequestBody UpdateBookLoanDueDateDTO updateBookLoanDueDateDTO) {
+    public void updateBookLoanDueDate(@PathVariable long id, @RequestBody @Valid UpdateBookLoanDueDateDto updateBookLoanDueDateDTO) {
         loanService.updateBookLoanDueDate(id, updateBookLoanDueDateDTO);
     }
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class LoanerDTO {
+public class LoanerDto {
 
     @NotNull
     @Length(min = 1, max = 255)

@@ -2,7 +2,7 @@ package com.library.service;
 
 import com.library.db.entity.Loaner;
 import com.library.db.repository.LoanerRepository;
-import com.library.dto.in.LoanerDTO;
+import com.library.dto.in.LoanerDto;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class LoanerService {
     }
 
     @Transactional
-    public Loaner createLoaner(LoanerDTO loanerDTO) {
+    public Loaner createLoaner(LoanerDto loanerDTO) {
         Loaner loaner = new Loaner();
         loaner.setFirstName(loanerDTO.getFirstName());
         loaner.setLastName(loanerDTO.getLastName());
